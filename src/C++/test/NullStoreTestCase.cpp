@@ -63,13 +63,13 @@ TEST( setGet )
 
   std::vector < std::string > messages;
   object.get( 1, 3, messages );
-  assert( messages.size() == 0 );
+  CHECK( messages.size() == 0 );
 
   object.get( 4, 6, messages );
-  assert( messages.size() == 0 );
+  CHECK( messages.size() == 0 );
 
   object.get( 2, 6, messages );
-  assert( messages.size() == 0 );
+  CHECK( messages.size() == 0 );
 }
 
 TEST( setGetWithQuote )
@@ -94,19 +94,19 @@ TEST( setGetWithQuote )
 
   std::vector < std::string > messages;
   object.get( 1, 4, messages );
-  assert( messages.size() == 0 );
+  CHECK( messages.size() == 0 );
 }
 
 TEST_FIXTURE( sharedObjectFixture, other )
 {
   object.setNextSenderMsgSeqNum( 10 );
-  assert( object.getNextSenderMsgSeqNum() == 10 );
+  CHECK( object.getNextSenderMsgSeqNum() == 10 );
   object.setNextTargetMsgSeqNum( 20 );
-  assert( object.getNextTargetMsgSeqNum() == 20 );
+  CHECK( object.getNextTargetMsgSeqNum() == 20 );
   object.incrNextSenderMsgSeqNum();
-  assert( object.getNextSenderMsgSeqNum() == 11 );
+  CHECK( object.getNextSenderMsgSeqNum() == 11 );
   object.incrNextTargetMsgSeqNum();
-  assert( object.getNextTargetMsgSeqNum() == 21 );
+  CHECK( object.getNextTargetMsgSeqNum() == 21 );
 
   object.setNextSenderMsgSeqNum( 5 );
   object.setNextTargetMsgSeqNum( 6 );
@@ -115,15 +115,15 @@ TEST_FIXTURE( sharedObjectFixture, other )
 TEST_FIXTURE( sharedObjectFixture, reload )
 {
   // use same session from previous test
-  assert( object.getNextSenderMsgSeqNum() == 5 );
-  assert( object.getNextTargetMsgSeqNum() == 6 );
+  CHECK( object.getNextSenderMsgSeqNum() == 5 );
+  CHECK( object.getNextTargetMsgSeqNum() == 6 );
 }
 
 TEST_FIXTURE( sharedObjectFixture, refresh )
 {
   // use same session from previous test
   object.refresh();
-  assert( object.getNextSenderMsgSeqNum() == 5 );
-  assert( object.getNextTargetMsgSeqNum() == 6 );
+  CHECK( object.getNextSenderMsgSeqNum() == 5 );
+  CHECK( object.getNextTargetMsgSeqNum() == 6 );
 }
 }
